@@ -20,19 +20,20 @@
 	  });</script>
 </head>
 <body>
-<jsp:include page="common/header.jsp"/>
+
 <div class="container">
+<jsp:include page="common/header.jsp"/>
  <c:if test="${empty mvo}">
    <h3>로그인상태가 아닙니다.</h3>
  </c:if>
   <c:if test="${!empty mvo}">
-  	<c:if test="${mvo.memProfile eq ' '}">
-  		<img src="기본이미지" style="width:50px; height:50px;" />
+  	<c:if test="${mvo.memProfile eq nulll}">
+  		<img src="${contextPath}/resources/images/default.jpg" style="width:53px; height:53px;" />
 	</c:if>	  
-	<c:if test="${mvo.memProfile ne ' '}">
+	<c:if test="${mvo.memProfile ne null}">
   		<img src="${contextPath}/resources/upload/${mvo.memProfile}" style="width:50px; height:50px;" />
 	</c:if>	  
-   <h3>${mvo.memName}님의 방문을 환영합니다!</h3>
+   <label>${mvo.memName}님의 방문을 환영합니다!</label>
  </c:if>
 <div class="panel panel-default" >
     <div style="text-align:center; background-color:#F2B255 ;" >

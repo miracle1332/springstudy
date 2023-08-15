@@ -1,5 +1,6 @@
 package kr.board.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.oreilly.servlet.MultipartRequest;
 
 import kr.board.entity.Member;
 import kr.board.mapper.MemberMapper;
@@ -153,6 +156,16 @@ public class MemberController {
 		return "member/memImageForm";
 	}
 	
-	
-	
+	//회원 사진 이미지 업로드 기능(upload폴더에도 저장, db에도 저장)
+	@RequestMapping("/memImageUpdate.do")
+	public String memImageUpdate(HttpServletRequest request) {
+		//파일 업로드 API 가 필요 (cos.jar, - 고전적임 )
+		MultipartRequest multi = null;
+		int fileMaxSize = 10*1024*1024; // 10메가바이트를 의미
+
+		//C:\eGovFrame-4.0.0\workspace.edu\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\SpringMVC03\resources - getRealPath
+		String savePath =request.getRealPath("resources/upload");
+		
+		return "";
+	}
 }
