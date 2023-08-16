@@ -30,8 +30,14 @@
             <li><a href="${contextPath}/memUpdateForm.do"><span class="glyphicon glyphicon-wrench"></span>회원정보수정</a></li>
             <li><a href="${contextPath}/memImageForm.do"><span class="glyphicon glyphicon-picture"></span>사진등록</a></li>
             <li><a href="${contextPath}/memLogout.do"><span class="glyphicon glyphicon-log-out"></span>로그아웃</a></li>
+  		<c:if test="${mvo.memProfile eq ''}">
+  		<li><img class="img-circle" src="${contextPath}/resources/images/default.jpg" style="width:63px; height:63px;" />${mvo.memName} ❤️</li>
+		</c:if>	  
+		<c:if test="${mvo.memProfile ne ''}">
+  		<li><img class="img-circle" src="${contextPath}/resources/proimg/${mvo.memProfile}" style="width:63px; height:63px;" />${mvo.memName} ❤️</li>
+		</c:if>	  
+ 	</c:if>
       </ul>
-      </c:if>
     </div>
   </div>
 </nav>

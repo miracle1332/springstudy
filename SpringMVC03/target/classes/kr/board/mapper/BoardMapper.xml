@@ -7,7 +7,8 @@
   </select>
 
   <insert id="boardInsert" parameterType="kr.board.entity.Board">
-   insert into springboard(idx, title, content, writer) values(springboard_idx.nextval,#{title},#{content},#{writer})
+   insert into springboard(memID, idx, title, content, writer) 
+   values(#{memID},springboard_idx.nextval,#{title},#{content},#{writer})
   </insert>
   
   <select id="boardContent" resultType="kr.board.entity.Board">
