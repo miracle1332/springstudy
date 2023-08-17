@@ -128,6 +128,9 @@
     			 url : "board/count/"+idx,
     			 type : "put",    			 
     			 dataType : "json",
+    			 beforeSend: function(xhr){
+        			 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+        		 }, //시큐리티
     			 success : function(data){
     				 $("#cnt"+idx).text(data.count);
     			 },    			 
@@ -138,7 +141,10 @@
      function goDelete(idx){
     	 $.ajax({
     		 url : "board/"+idx,
-    		 type : "delete",    		 
+    		 type : "delete",    	
+    		 beforeSend: function(xhr){
+    			 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+    		 }, //시큐리티
     		 success : loadList,
     		 error : function(){ alert("error"); }    		 
     	 });
@@ -161,6 +167,9 @@
     		 type : "put",
     		 contentType:'application/json;charset=utf-8',
     		 data : JSON.stringify({"idx":idx,"title":title,"content":content}),
+    		 beforeSend: function(xhr){
+    			 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+    		 }, //시큐리티
     		 success : loadList,
     		 error : function(){ alert("error"); }    		 
     	 });
