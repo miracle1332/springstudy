@@ -98,6 +98,8 @@ public class MemberController {
 			return "redirect:/memLoginForm.do";
 		}
 		Member mvo = memberMapper.memLogin(m);
+		//Member mvo = memberMapper.getMember(m.getMemID());
+		//session.setAttribute("mvo", mvo); 
 		if(mvo!=null) { //로그인에 성공 
 			rttr.addFlashAttribute("msgType", "성공메세지");
 			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
