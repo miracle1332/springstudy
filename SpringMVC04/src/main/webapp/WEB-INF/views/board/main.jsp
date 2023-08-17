@@ -60,7 +60,6 @@
 	       	  }
         	 listHtml+="</td>";
         	 listHtml+="</tr>";
-        	 
     	 } );    	 
     	 //로그인을 해야 보이는 부분..
     	 if(${!empty mvo}){
@@ -193,6 +192,7 @@
            </td>
          </tr>
       </table>
+      <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
      </form>
     </div>
     <div class="panel-footer">인프런_스프1탄_오혜린</div>

@@ -68,10 +68,9 @@
   <div class="panel panel-default">
     <div class="panel-heading">회원정보 수정 양식</div>
     <div class="panel-body">
-    	<form name="frm" action="${contextPath}/memUpdate.do" method="post">
+    	<form name="frm" action="${contextPath}/memUpdate.do?" method="post">
     	<input type="hidden" id="memID" name="memID" value="${mvo.memID}"/>
     	<input type="hidden" id="memPassword" name="memPassword" value=""/>
-    	<input type="hidden" id="memProfile" name="memProfile" value="${mvo.memProfile}"/>
     		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddd;">
     		  <tr>
     		  	<td style="width: 110px; vertical-align:middle;">아이디</td>
@@ -121,6 +120,7 @@
     		  	</td>
     		  </tr>
     		</table>
+    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     	</form>
     </div>
    

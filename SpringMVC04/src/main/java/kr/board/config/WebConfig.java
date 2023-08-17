@@ -7,10 +7,12 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
 
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 //web.xml을 대신해서 만드는 파일!
+	
+	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
 		// TODO Auto-generated method stub
-		return new Class[] { RootConfig.class, SecurityConfig.class };
+		return new Class[] { SecurityConfig.class, RootConfig.class };
 	}
 
 	@Override
@@ -34,7 +36,6 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		return new Filter[]{encodingFilter};
 
 	}
-	
 	
 	
 

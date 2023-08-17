@@ -49,6 +49,7 @@
     		  	</td>
     		  </tr>
     		</table>
+    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
     	</form>
     </div>
     <!-- 로그인 실패 메시지(모달) -->

@@ -145,7 +145,8 @@ public class MemberController {
 				rttr.addFlashAttribute("msgType","성공메세지");
 				rttr.addFlashAttribute("msg","회원정보 수정에 성공하였습니다.");
 				//회원정보 수정에 성공하면 -> 로그인상태 유지
-				session.setAttribute("mvo", m); //회원가입성공은 m에 모든값이 정상적으로 들어갔다는 뜻이므로 Member객체 m을 세션으로 연결해서 넣어줌
+				Member mvo = memberMapper.getMember(m.getMemID());
+				session.setAttribute("mvo", mvo); //회원가입성공은 m에 모든값이 정상적으로 들어갔다는 뜻이므로 Member객체 m을 세션으로 연결해서 넣어줌
 				return "redirect:/"; // "/"-> index.jsp 첫페이지로 돌아가는것임.
 			}else {
 				rttr.addFlashAttribute("msgType","실패메세지");
