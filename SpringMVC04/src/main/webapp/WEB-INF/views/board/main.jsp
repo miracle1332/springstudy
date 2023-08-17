@@ -12,6 +12,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
+  var csrfHeaderName = "${_csrf.headerName}";
+  var csrfTokenValue = "${_csrf.token}";
+
      $(document).ready(function(){
     	loadList();    	 
      });  
@@ -94,6 +97,9 @@
     		 url : "board/new",
     		 type : "post",
     		 data : fData,
+    		 beforeSend: function(xhr){
+    			 xhr.setRequestHeader(csrfHeaderName, csrfTokenValue)
+    		 }, //시큐리티
     		 success : loadList,
     		 error : function() { alert("error"); }    		 
     	 });
