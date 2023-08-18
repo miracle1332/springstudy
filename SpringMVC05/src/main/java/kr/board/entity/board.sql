@@ -8,23 +8,24 @@ create table springboard(
 	count number default 0,
 	primary key(idx)
 );
-
-create table mem_tbl(
+--스프링 시큐리티(회원테이블)--
+create table mem_stbl(
 	memIdx number not null,
 	memID varchar2(20) not null,
-	memPassword varchar2(20) not null,
+	memPassword varchar2(68) not null,
 	memName varchar2(20) not null,
 	memAge number,
 	memGender varchar2(20),
 	memEmail varchar2(50),
 	memProfile varchar2(50),
-	primary key(memIdx)
+	primary key(memID)
 );
 
-drop table springboard;
+create table mem_auth (
+	no number primary key,
+	memID varchar2(50) not null,
+	auth varchar2(50) not null,
+	constraint fk_member_auth foreign key(memID) references mem_stbl(memID)
+);
 
-create sequence mem_tbl_idx;
-
-select * from mem_tbl;
-
-delete from MEM_TBL;
+select * from mem_auth;
