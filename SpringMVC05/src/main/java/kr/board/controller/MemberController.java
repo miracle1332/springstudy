@@ -2,6 +2,7 @@ package kr.board.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
+import kr.board.entity.AuthVO;
 import kr.board.entity.Member;
 import kr.board.mapper.MemberMapper;
 
@@ -72,6 +74,16 @@ public class MemberController {
 		m.setMemPassword(encyptPw);//암호화된 패스워드로 바꿔서 다시 저장해주기.
 		int result = memberMapper.register(m);
 		if(result==1) { //회원가입 성공 메세지
+			// 추가 : 권한테이블에 회원의 권한을 저장하기
+			List<AuthVO> list = m.getAuthList();
+			for(AuthVO authVO : list) {
+				if(authVO.getAuth() != null) { //널체크 한번더하기
+					AuthVO saveVO = new AuthVO();
+					saveVO.setMemID(m.getMemID()); //회원아이디ㅣ
+					saveVO.setAuth(authVO.getAuth()); //회원의 권한
+					memberMapper.authInsert(saveVO);
+				}
+			}
 			rttr.addFlashAttribute("msgType","성공메세지");
 			rttr.addFlashAttribute("msg","회원가입을 축하드립니다.");
 			//회원가입이 성공하면 -> 로그인처리 하기(회원가입성공과 동시에 로그인이 되도록 하는것)

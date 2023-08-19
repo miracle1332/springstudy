@@ -28,4 +28,8 @@
   <update id="memProfileUpdate" parameterType="kr.board.entity.Member">
   	update mem_stbl set memProfile=#{memProfile} where memID=#{memID}
   </update>
-</mapper>
+  
+  <insert id="authInsert" parameterType="kr.board.entity.AuthVO">
+  	insert into mem_auth(memID, auth) values(#{memID},#{auth})
+  </insert>
+   </mapper>
