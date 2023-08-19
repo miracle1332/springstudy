@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,6 +27,9 @@ public class MemberController {
 	@Autowired
 	MemberMapper memberMapper;
 	
+	@Autowired
+	PasswordEncoder pwEncoder;
+
 	@RequestMapping("/memberJoin.do")
 	public String memJoin() {
 		return "member/join";
@@ -33,6 +37,7 @@ public class MemberController {
 	@RequestMapping("/memRegisterCheck.do") //리스푼스바디 -> ajax쪽으로 응답보내려면
 	public @ResponseBody int memRegisterCheck(@RequestParam("memID") String memID) {
 		Member m = memberMapper.registerCheck(memID);
+		
 		if(m != null || memID.equals("")) {
 			return 0; //이미 존재하는 회원, 입력불가
 		}
@@ -47,7 +52,7 @@ public class MemberController {
 			memPassword1==null || memPassword1.equals("")||
 		    memPassword2==null || memPassword2.equals("")||
 			m.getMemName()==null || m.getMemName().equals("") ||
-			m.getMemAge()==0 ||
+			m.getMemAge()==0 ||  m.getAuthList().size()==0 ||
 			m.getMemGender()==null || m.getMemGender().equals("") ||
 			m.getMemEmail()==null || m.getMemEmail().equals("") ) {
 			//누락메세지를 가지고 가기? => jsp로 가는게 아니라서 객체바인딩을 못함(객체바인딩은 jsp로 갈때 모델에 setAttribute로 꺼내가는것)
@@ -62,6 +67,9 @@ public class MemberController {
 		}
 		m.setMemProfile(""); //사진이미지는 없다는 의미로 null->"";
 		//누락된게 없으면 회원을 테이블에 저장하기.
+		//추가 : 비밀번호를 암호화 하기(api) - api는 security.config에 저장
+		String encyptPw = pwEncoder.encode(m.getMemPassword());
+		m.setMemPassword(encyptPw);//암호화된 패스워드로 바꿔서 다시 저장해주기.
 		int result = memberMapper.register(m);
 		if(result==1) { //회원가입 성공 메세지
 			rttr.addFlashAttribute("msgType","성공메세지");
