@@ -27,5 +27,7 @@ create table mem_auth (
 	auth varchar2(50) not null,
 	constraint fk_member_auth foreign key(memID) references mem_stbl(memID)
 );
-
+create sequence no_idx;
+create sequence mem_stbl_idx;
 select * from mem_auth;
+select * from mem_stbl;
