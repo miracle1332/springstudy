@@ -88,8 +88,9 @@ public class MemberController {
 			rttr.addFlashAttribute("msg","회원가입을 축하드립니다.");
 			//회원가입이 성공하면 -> 로그인처리 하기(회원가입성공과 동시에 로그인이 되도록 하는것)
 			//getmember() -> 회원정보 + 권한정보
-			//Member mvo = memberMapper.getMember(m.getMemID());
-			session.setAttribute("mvo", m); //회원가입성공은 m에 모든값이 정상적으로 들어갔다는 뜻이므로 Member객체 m을 세션으로 연결해서 넣어줌
+			Member mvo = memberMapper.getMember(m.getMemID());
+			//System.out.println(mvo);
+			session.setAttribute("mvo", mvo); //회원가입성공은 m에 모든값이 정상적으로 들어갔다는 뜻이므로 Member객체 m을 세션으로 연결해서 넣어줌
 			//session.setAttribute("mvo", m); 이 코드를 거쳤다는 것은 회원가입에 성공했다는 의미
 			return "redirect:/"; // "/"-> index.jsp 첫페이지로 돌아가는것임.
 		}else {

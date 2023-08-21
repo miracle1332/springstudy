@@ -45,7 +45,7 @@
   <!-- 수정( 회원정보와 권한정보를 같이 가져올 수 있도록 수정) -->
   <select id="getMember" resultMap="memberMap">
   	select * from mem_stbl mem left outer join mem_auth auth on 
-  	mem.memID=auth.memID where where mem.memID=#{memID}
+  	mem.memID=auth.memID where mem.memID=#{memID}
   </select>
   
   <update id="memProfileUpdate" parameterType="kr.board.entity.Member">
