@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import kr.board.entity.Member;
+import kr.board.entity.MemberUser;
 import kr.board.mapper.MemberMapper;
 
 public class MemberUserDetailsService implements UserDetailsService{
@@ -19,12 +20,11 @@ public class MemberUserDetailsService implements UserDetailsService{
 		Member mvo = memberMapper.memLogin(username);
 		//-->userDeatails ---> implements->user ---> extends--->MemberUser
 		if(mvo != null) { //해당사용자가 있다면
-			//return mvo; //new MemberUser(mvo); //Member정보와 AuthVO정보 두개를 MemberUser에 넣어주기.
+			return new MemberUser(mvo); //new MemberUser(mvo); //Member정보와 AuthVO정보 두개를 MemberUser에 넣어주기.
 			//스프링 시큐리티는 내부 필터를 통해야하기 때문에 바로 리턴하지 못해서 MemberUser클래스를 만들어야함.
 		}else {
 			throw new UsernameNotFoundException("user with usernema" + username + "not exist...");
 		}
-		return null;
 	}
 
 }
