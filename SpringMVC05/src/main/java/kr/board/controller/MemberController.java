@@ -175,6 +175,7 @@ public class MemberController {
 				memberMapper.authDelete(m.getMemID());
 
 				//새로운 권한을 추가하기.
+				List<AuthVO> list = m.getAuthList(); //권한리스트 가져오기
 				for(AuthVO authVO : list) {
 					if(authVO.getAuth()!=null) {
 						AuthVO saveVO = new AuthVO();
