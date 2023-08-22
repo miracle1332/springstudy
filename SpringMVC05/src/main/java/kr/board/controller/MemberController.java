@@ -179,7 +179,14 @@ public class MemberController {
 					}
 				}
 				//새로운 권한을 추가하기.
-				
+				for(AuthVO authVO : list) {
+					if(authVO.getAuth()!=null) {
+						AuthVO saveVO = new AuthVO();
+						saveVO.setMemID(m.getMemID()); //회원아이디ㅣ
+						saveVO.setAuth(authVO.getAuth()); //회원의 권한
+						memberMapper.authInsert(saveVO);
+					}
+				}
 				
 				rttr.addFlashAttribute("msgType","성공메세지");
 				rttr.addFlashAttribute("msg","회원정보 수정에 성공하였습니다.");
