@@ -22,6 +22,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		filter.setEncoding("UTF-8");
 		filter.setForceEncoding(true);
 		http.addFilterBefore(filter, CsrfFilter.class);
+		//**요청에 따른 권한을 확인하여 서비스하는 부분. - 1
+		http //어떤권한을 가지고 있는 사람한테만 보여줄 것인지
+			.authorizeRequests()
+				.antMatchers("/")
+				.permitAll()
+				.and()//다음권한 또 걸고 시플때
+			.formLogin()
+				.loginPage("/memLoginForm.do")
+				.loginProcessingUrl("/memLogin.do") //이 url이 왓을때 스프링 내부 api를 거치겠다는 뜻
+				.permitAll()
+				.and()
+			.logout()
+				.invalidateHttpSession(true)
+				.logoutSuccessUrl("/") //메인jsp
+				.and()
+			.exceptionHandling().accessDeniedPage("/access-denied"); //권한이 없는 페이지
 	}
 	
 	//패스워드 인코딩 객체(비밀번호 암호화하기 - 객체화가 필요함.)

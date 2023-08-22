@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>스프링mvc03</title>
+  <title>스프링mvc06</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -49,7 +49,7 @@
 		  </div>
 		</div>
     </div>
-    <div class="panel-footer">스프링 공부중 mvc03_오혜린</div>
+    <div class="panel-footer">스프링 공부중 MVO06</div>
   </div>
 </div>
 	<div id="myMessage" class="modal fade" role="dialog">

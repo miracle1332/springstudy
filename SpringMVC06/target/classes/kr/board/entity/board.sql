@@ -8,6 +8,9 @@ create table springboard(
 	count number default 0,
 	primary key(idx)
 );
+select*from SPRINGBOARD;
+create sequence springboard_idx;
+drop sequence springboard_idx;
 --스프링 시큐리티(회원테이블)--
 create table mem_stbl(
 	memIdx number not null,
@@ -31,3 +34,7 @@ create sequence no_idx;
 create sequence mem_stbl_idx;
 select * from mem_auth;
 select * from mem_stbl;
+
+delete from mem_auth;
+delete from mem_stbl;
+delete from springboard;

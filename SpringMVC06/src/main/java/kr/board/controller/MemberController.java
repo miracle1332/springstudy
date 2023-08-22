@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -110,7 +111,7 @@ public class MemberController {
 	public String memLoginForm() {
 		return "member/memLoginForm"; //memLoginForm.jsp
 	}
-	//로그인 기능 구현
+	/*//로그인 기능 구현 -스프링내부시큐리티로 대체
 	@RequestMapping("/memLogin.do")
 	public String memLogin(Member m, RedirectAttributes rttr,HttpSession session) {
 		if(m.getMemID()==null || m.getMemID().equals("") ||
@@ -134,7 +135,7 @@ public class MemberController {
 			rttr.addFlashAttribute("msg", "아이디 혹은 비밀번호가 맞지않습니다. 다시 로그인 해주세요.");
 			return "redirect:/memLoginForm.do";
 		}
-	}
+	}*/
 	//회원정보 수정화면
 	@RequestMapping("/memUpdateForm.do")
 	public String memUpdateForm() {
@@ -258,5 +259,10 @@ public class MemberController {
 		rttr.addFlashAttribute("msgType", "성공메세지");
 		rttr.addFlashAttribute("msg", "프로필 사진 변경에 성공했습니다.");		
 		return "redirect:/"; //메인으로가기 index.jsp
+		}
+		
+		@GetMapping("/access-denied")
+		public String showAccessDenied() {
+			return "";
 		}
 }
