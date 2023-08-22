@@ -172,12 +172,8 @@ public class MemberController {
 			int result = memberMapper.memUpdate(m);
 			if(result==1) { //회원정보 수정 성공 메세지
 				//기존권한을 삭제하고
-				List<AuthVO> list = m.getAuthList(); //권한리스트 가져오기
-				for(AuthVO authVO : list) {
-					if(authVO.getAuth()!=null) {
-						memberMapper.authDelete(m.getMemID());
-					}
-				}
+				memberMapper.authDelete(m.getMemID());
+
 				//새로운 권한을 추가하기.
 				for(AuthVO authVO : list) {
 					if(authVO.getAuth()!=null) {
