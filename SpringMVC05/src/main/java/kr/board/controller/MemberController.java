@@ -119,10 +119,12 @@ public class MemberController {
 			rttr.addFlashAttribute("msg", "모든 입력칸을 입력해주세요.");
 			return "redirect:/memLoginForm.do";
 		}
+		
 		Member mvo = memberMapper.memLogin(m);
+		//추가 : 비밀번호 일치여부 체크
 		//Member mvo = memberMapper.getMember(m.getMemID());
 		//session.setAttribute("mvo", mvo); 
-		if(mvo!=null) { //로그인에 성공 
+		if(mvo!=null && pwEncoder.matches(m.getMemPassword(), mvo.getMemPassword())) { //로그인에 성공 
 			rttr.addFlashAttribute("msgType", "성공메세지");
 			rttr.addFlashAttribute("msg", "로그인에 성공했습니다.");
 			session.setAttribute("mvo", mvo);

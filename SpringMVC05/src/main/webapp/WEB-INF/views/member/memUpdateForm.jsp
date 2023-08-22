@@ -113,6 +113,15 @@
     		  	<td style="width: 110px; vertical-align:middle;">이메일</td>
     		  	<td colspan="2"><input type="text" id="memEmail" name="memEmail" class="form-control" maxlength="50" placeholder="이메일 주소를 입력하세요." value="${mvo.memEmail}"/></td>
     		  </tr>
+    		  <!-- 선택한 권한 출력하기 -->
+    		  <tr>
+    		  	<td style="width: 110px; vertical-align:middle;">사용자 권한</td>
+    		  	<td colspan="2">
+    		  		<input type="checkbox" name="authList[0].auth" value="ROLE_USER"/>ROLE_USER
+    		  		<input type="checkbox" name="authList[1].auth" value="ROLE_MANAGER"/>ROLE_MANAGER
+    		  		<input type="checkbox" name="authList[2].auth" value="ROLE_ADMIN"/>ROLE_ADMIN
+    		  	</td>
+    		  </tr>
     		  <tr>
     		  	  	<td colspan="3" style="text-align:left;">
     		  		<span  id="passMessage" ></span><input type="button" class="btn btn-primary btn-sm pull-right" value="수정" onclick="goUpdate()"/>
