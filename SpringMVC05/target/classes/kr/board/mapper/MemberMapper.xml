@@ -39,8 +39,8 @@
   </select>
   
   <update id="memUpdate"  parameterType="kr.board.entity.Member" >
-   	update mem_stbl set memPassword=#{memPassword}, memName=#{memName}, memAge=#{memAge},memGender=#{memGender},
-   	memEmail=#{memEmail} where memID=#{memID}     
+   	update mem_stbl set memPassword=#{memPassword}, memName=#{memName}, 
+   	memAge=#{memAge},memGender=#{memGender}, memEmail=#{memEmail} where memID=#{memID}     
   </update>
   
   <!-- 수정( 회원정보와 권한정보를 같이 가져올 수 있도록 수정) -->
@@ -56,4 +56,8 @@
   <insert id="authInsert" parameterType="kr.board.entity.AuthVO">
   	insert into mem_auth(no, memID, auth) values(no_idx.nextval, #{memID},#{auth})
   </insert>
+  
+  <delete id="authDelete">
+  	delete from mem_auth where memID=#{memID}
+  </delete>
    </mapper>
