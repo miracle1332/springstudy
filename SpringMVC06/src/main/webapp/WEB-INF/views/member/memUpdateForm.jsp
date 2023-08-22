@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="mvo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,7 +72,7 @@
     <div class="panel-heading">회원정보 수정 양식</div>
     <div class="panel-body">
     	<form name="frm" action="${contextPath}/memUpdate.do?" method="post">
-    	<input type="hidden" id="memID" name="memID" value="${mvo.memID}"/>
+            <input type="hidden" id="memID" name="memID" value="${mvo.member.memID}"/>
     	<input type="hidden" id="memPassword" name="memPassword" value=""/>
     		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddd;">
     		  <tr>

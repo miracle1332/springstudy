@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="mvo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,10 +16,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-  	if(${!empty msgType}){
-   		$("#messageType").attr("class", "modal-content panel-warning");    
-  		$("#myMessage").modal("show");
-  	}
+	  if(${param.error!=null}){
+		  $("#messageType").attr("class", "modal-content panel-warning");    
+		  $(".modal-body").text("아이디와 비번을 확인해주세요");
+		  $(".modal-title").text("실패실패");
+	  		$("#myMessage").modal("show");
+	  }
   });
   </script>
 </head>
@@ -31,11 +36,11 @@
          <table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd;">
            <tr>
              <td style="width: 110px; vertical-align: middle;">아이디</td>
-             <td><input id="memID" name="memID" class="form-control" type="text" maxlength="20" placeholder="아이디를 입력하세요."/></td>
+             <td><input id="memID" name="username" class="form-control" type="text" maxlength="20" placeholder="아이디를 입력하세요."/></td>
            </tr>
            <tr>
              <td style="width: 110px; vertical-align: middle;">비밀번호</td>
-             <td colspan="2"><input id="memPassword" name="memPassword" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 입력하세요."/></td>            
+             <td colspan="2"><input id="memPassword" name="password" class="form-control" type="password" maxlength="20" placeholder="비밀번호를 입력하세요."/></td>            
            </tr>      
            <tr>
              <td colspan="2" style="text-align: left;">

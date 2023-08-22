@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="mvo" value="${SPRING_SECURITY_CONTEXT.authentication.principal}"/>
+<c:set var="auth" value="${SPRING_SECURITY_CONTEXT.authentication.authorities}"/>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,29 +31,27 @@
     <div class="panel-heading">회원사진 등록양식</div>
     <div class="panel-body">
     	<form action="${contextPath}/memImageUpdate.do?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data"><!-- file데이터를 보내줄려면 enctype꼭 써줘야함 -->
-    		<input type="hidden" name="memID" value="${mvo.memID}"/>
-    		<table class="table table-bordered" style="text-align: center; border: 1px solid #dddd;">
-    		  <tr>
-    		  	<td style="width: 110px; vertical-align:middle;">아이디</td>
-    		  		<td>${mvo.memID }</td>
-    		  </tr>
-    		  <tr>
-    		  	<td style="width: 110px; vertical-align:middle;">사진 업로드</td>
-    		  	<td colspan="2">
-    		  		<span class="btn btn-default">
-    		  			 이미지를 업로드하세요!<input type="file" name="memProfile"/>
-    		  		</span>
-    		  	</td>
-    		  </tr>
-  			   <tr>
-    		  	  	<td colspan="2" style="text-align:left;">
-    		  		<input type="submit" class="btn btn-primary btn-sm pull-right" value="등록" />
-    		  		</td>
-    		  	</td>
-    		  </tr>
-    		</table>
-    		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    	</form>
+    		    <input type="hidden" name="memID" value="${mvo.member.memID}"/>
+    		  <table class="table table-bordered" style="text-align: center; border: 1px solid #dddddd;">
+           <tr>
+             <td style="width: 110px; vertical-align: middle;">아이디</td>
+             <td>${mvo.member.memID}</td>
+           </tr>
+           <tr>
+             <td style="width: 110px; vertical-align: middle;">사진 업로드</td>
+             <td colspan="2">
+               <span class="btn btn-default">
+                 이미지를 업로드하세요.<input type="file" name="memProfile"/>
+               </span>
+             </td>            
+           </tr>      
+           <tr>
+             <td colspan="2" style="text-align: left;">
+                <input type="submit" class="btn btn-primary btn-sm pull-right" value="등록"/>
+             </td>             
+           </tr>
+         </table>
+      </form> 
     </div>
     <!-- 로그인 실패 메시지(모달) -->
     <div id="myMessage" class="modal fade" role="dialog">
