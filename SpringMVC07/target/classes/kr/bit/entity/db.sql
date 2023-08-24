@@ -28,6 +28,8 @@ insert into tblBoard
 select nvl(max(idx)+1, 1), 'bit03', '연습중', '께시판연습', '뭉이', sysdate,
 0,nvl(max(boardGroup)+1, 0),0,0,1 from tblBoard; 
 
+delete from tblBoard where idx=1;
+
 select * from TBLBOARD;
 --회원관련테이블--
 create table tblMember(
@@ -40,11 +42,5 @@ create table tblMember(
 	longitude decimal(13,10) --현재위치 경도
 );
 drop table tblMember;
-insert into tblMember(memID, memPwd, memName, memPhone)
-values('bit01', 'bit01', '관리자', '010-1111-1111');
-insert into tblMember(memID, memPwd, memName, memPhone)
-values('bit02', 'bit02', '오혜린', '010-2222-2222');
-insert into tblMember(memID, memPwd, memName, memPhone)
-values('bit03', 'bit03', '뭉이', '010-3333-3333');
 
 

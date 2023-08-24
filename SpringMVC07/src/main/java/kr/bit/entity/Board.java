@@ -1,5 +1,7 @@
 package kr.bit.entity;
 
+import java.util.Date;
+
 import lombok.Data;
 //VO
 @Data
@@ -9,7 +11,7 @@ public class Board {
 	  private String title; // 제목
 	  private String content; // 내용
 	  private String writer; // 작성자
-	  private String indate; // 작성일
+	  private Date indate; // 작성일
 	  private int count; // 조회수
 	  private int boardGroup; // 부모글과 답글을 묶는 역할
 	  private int boardSequence; // 답글의 순서

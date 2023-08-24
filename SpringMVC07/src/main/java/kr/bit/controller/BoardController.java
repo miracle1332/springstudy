@@ -24,6 +24,12 @@ public class BoardController {
 		List<Board> list = boardService.getList();
 		//list의 저장값을 객체 바인딩
 		model.addAttribute("list",list);
-		return "board/boardList"; //list를 jsp로 포워딩
+		return "board/list"; //list를 jsp로 포워딩
+	}
+	
+	@GetMapping("/register")
+	public String register() {
+		
+		return "board/register";
 	}
 }
