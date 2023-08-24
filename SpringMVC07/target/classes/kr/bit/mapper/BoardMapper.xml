@@ -24,7 +24,7 @@
 	 values(#{idx},#{memID},#{title},#{content},#{writer},#{boardGroup},0,0,1)	     
   </insert>
   
-  <!--<insert id="replyInsert" parameterType="kr.bit.entity.Board">
+ <insert id="replyInsert" parameterType="kr.bit.entity.Board">
     <selectKey keyProperty="idx" resultType="kr.bit.entity.Board" order="BEFORE">
         select NVL(max(idx)+1, 1) as idx from tblBoard      
      </selectKey>     
@@ -58,7 +58,7 @@
   
   <select id="totalCount" resultType="int">
     select count(*) from tblBoard
-  </select>-->
+  </select>
   
 </mapper>
 
